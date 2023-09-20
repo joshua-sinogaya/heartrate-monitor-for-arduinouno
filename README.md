@@ -21,12 +21,42 @@ We have developed a low-cost heart rate monitoring system that provides real-tim
 - Llandelar, A-Jay
 - Sinogaya, Joshua Gabriel
 
-## Usage
+## Code
 
-1. Connect the MAX30102 sensor to the Arduino Uno using Dupont/Jumper wires.
-2. Attach the 16x2 LCD I2C interface to the Arduino Uno.
-3. Place the MAX30102 sensor on the patient's finger.
-4. Power on the system using the 9V battery and DC jack.
-5. The heart rate data will be displayed on the 16x2 LCD in real-time, and the piezo buzzer will beep in sync with the heart rate.
+The code for the real-time heart rate monitoring system using Arduino Uno is written in C++ programming language. The code utilizes the MAX30105 sensor library to collect heart rate data and the LiquidCrystal_I2C library to display the data on a 16x2 LCD screen. The heart rate is displayed in beats per minute (BPM), and a piezo buzzer is used to alert the patient or healthcare professional if the heart rate exceeds a predetermined threshold.
 
-Feel free to customize and enhance this system for your specific needs!
+The code begins with the inclusion of the necessary libraries, including Wire.h, MAX30105.h, LiquidCrystal_I2C.h, and heartRate.h. An array of bytes is then defined to create a heart symbol to display on the LCD screen. The setup function initializes the system by configuring the Arduino Uno pins and initializing the LCD screen. The MAX30105 sensor is also initialized, and the pulse amplitudes for the red and green LEDs are set to 0x0A and 0, respectively.
+
+The loop function continuously checks for a heart rate signal from the MAX30102 sensor. If a heartbeat is detected, a tone is played on the piezo buzzer to indicate a heartbeat. The heart rate is then calculated using the time between beats, and the average heart rate is computed based on the last four heart rate readings. If a finger is not detected, the LCD screen displays "No Finger," and the piezo buzzer produces a continuous sound. If a finger is detected, the LCD screen displays the current heart rate in BPM, and the piezo buzzer is silenced.
+
+Overall, the code for the real-time heart rate monitoring system using Arduino Uno is relatively simple and easy to understand. The libraries used and the programming language make it easy to integrate and modify the code for different applications and use cases.
+
+## Assembly Instructions
+
+### Connecting the MAX30102 Sensor to the Arduino Uno
+
+1. Connect the VCC into the 5V pin of the Arduino
+2. Connect the SCL into the SCL pin of the Arduino
+3. Connect the SDA into the SDA pin of the Arduino
+4. Connect the GND into the GND pin of the Arduino
+
+### Connecting the I2C 16x2 Interface
+
+1. Connect the VCC into the 5V pin of the Arduino
+2. Connect the SDA into the A4 pin of the Arduino
+3. Connect the SCL into the A5 pin of the Arduino
+4. Connect the GND into the GND pin of the Arduino
+
+### Connecting the Piezo Buzzer
+
+1. Connect the positive into the PWM~3 of the Arduino
+2. Connect the Negative into the GND pin of the Arduino
+
+### Connecting 9V Power
+
+1. Connect the 9V battery connector to the barrel jack socket of the Arduino Uno
+
+### Connecting the USB data cable
+
+1. Connect the USB A end of the data cable to the computer
+2. Connect the USB B end of the data cable to the Arduino
